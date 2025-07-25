@@ -1,17 +1,23 @@
-internal class Mods
-    {
+hi using System;
+using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
 
+namespace StupidTemplate
+{
+    internal class Plats
+    {
         private static GameObject leftplat;
         private static GameObject rightplat;
         private static GameObject SpawnPlat(Transform handTransform)
         {
             GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            gameObject.transform.localScale = new Vector3(0.025f, 0.3f, 0.4f); // Size 
+            gameObject.transform.localScale = new Vector3(0.025f, 0.3f, 0.4f);
             gameObject.transform.position = handTransform.position;
             gameObject.transform.rotation = handTransform.rotation;
             float num = (float)Time.frameCount / 180f % 1f;
             gameObject.GetComponent<Renderer>().enabled = true;
-            gameObject.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f); // Color
+            gameObject.GetComponent<Renderer>().material.color = Color.black; // put what color you want here
 
             return gameObject;
         }
@@ -41,3 +47,5 @@ internal class Mods
                 rightplat = null;
             }
         }
+    }
+}
