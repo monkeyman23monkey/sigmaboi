@@ -1,0 +1,13 @@
+Anyone have WASD fly?
+
+public static void LongArms()
+{
+    if (Class1.instance.longArmsEnabled.Value)
+    {
+        GorillaLocomotion.GTPlayer.Instance.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+    }
+    else
+    {
+        GorillaLocomotion.GTPlayer.Instance.transform.localScale = Vector3.one;
+    }
+}
