@@ -1,0 +1,70 @@
+using BepInEx;
+using BepInEx.Logging;
+using GorillaNetworking;
+using Photon.Pun;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[BepInPlugin("mod.hi", "ha", "1.0.0")]
+public class Class1 : BaseUnityPlugin
+{
+
+    Rect win = new Rect(650, 650, 655, 655);
+    float colorR = 0f;
+    float colorG = 0f;
+    float colorB = 0f;
+    string NewName = "";
+    string roomCode = "";
+    float Greenvalue = 0f;
+    float Redvalue = 0f;
+    float Bluevalue = 0f;
+    void OnGUI()
+    {
+      win = GUILayout.Window(123456, win, Basic, "Basic UI");
+        
+    }
+
+    void Basic(int id)
+    {
+        GUILayout.Label("color sliders");
+        GUILayout.Label($" [{colorR:F2}]");
+        colorR = GUILayout.HorizontalSlider(colorR, 0f, 9f);
+        GUILayout.Label("r");
+        GUILayout.Label($"  [{colorG:F2}]");
+        colorG = GUILayout.HorizontalSlider(colorG, 0f, 9f);
+        GUILayout.Label("g");
+        GUILayout.Label($" [{colorB:F2}]");
+        colorB = GUILayout.HorizontalSlider(colorB, 0f, 9f);
+        GUILayout.Label("b");
+        if (GUILayout.Button("Set Color"))
+        {
+            Redvalue = colorR;
+            Greenvalue = colorG;
+            Bluevalue = colorB;
+            GorillaTagger.Instance.UpdateColor(Redvalue, Greenvalue, Bluevalue);
+        }
+        GUILayout.Space(10);
+        GUILayout.Label("Name Changer and Room Joiner");
+        GUILayout.Label("Enter Room Code:");
+        roomCode = GUILayout.TextField(roomCode, 20);
+
+        if (GUILayout.Button("Join Room"))
+        {
+            PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomCode, 0);
+        }
+
+        if (GUILayout.Button("Disconnect"))
+        {
+            PhotonNetwork.Disconnect();
+        }
+        NewName = GUILayout.TextField(NewName, 20);
+        if (GUILayout.Button("Change Name"))
+        {
+            PhotonNetwork.LocalPlayer.NickName = NewName;
+            GorillaComputer.instance.currentName = NewName;
+            GorillaComputer.instance.savedName = NewName;
+        }
+        GUI.DragWindow();
+    }
+}
