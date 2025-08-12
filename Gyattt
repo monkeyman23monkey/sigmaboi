@@ -1,0 +1,13 @@
+c# 
+public static void joe()
+{
+    GameObject gameObject2 = GorillaTagger.Instance.offlineVRRig.myBodyDockPositions.allObjects[618].gameObject;
+    gameObject2.SetActive(true);
+    GorillaTagger.Instance.offlineVRRig.myBodyDockPositions.allObjects[618].storedZone = BodyDockPositions.DropPositions.RightArm;
+    GorillaTagger.Instance.offlineVRRig.myBodyDockPositions.allObjects[618].currentState = TransferrableObject.PositionState.InRightHand;
+    GorillaTagger.Instance.offlineVRRig.SetActiveTransferrableObjectIndex(1, 618);
+    CosmeticsController.instance.currentCart.Insert(0, CosmeticsController.instance.GetItemFromDict("LMAPE."));
+    CosmeticsController.instance.UpdateShoppingCart();
+    CosmeticsController.instance.ApplyCosmeticItemToSet(CosmeticsController.CosmeticSet.EmptySet, CosmeticsController.instance.GetItemFromDict("LMAPE."), false, true);
+    GorillaTagger.Instance.inCosmeticsRoom = true;
+}
